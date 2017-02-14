@@ -1,0 +1,28 @@
+##### MACROS #####
+macro False: 0
+macro True: 1
+
+# if(~iszero($x), $y) <=> unless($x, $y)
+# the same as
+# if !$x:
+#     $y
+# except that code generates the LLL
+# unless(is_zero(is_zero($x)), $y)
+macro IF_ZERO($x, $body):
+    unless($x, $body)
+
+
+# if($x, $y) <=> unless(~iszero($x), $y)
+macro IF_NOT_ZERO($x, $body):
+    unless(~iszero($x), $body)
+
+
+# ~iszero(~xor($a, $b)) <=> ~eq($a, $b); if every bit of $a is equal to the same bit of $b, then $a = $b and $a xor $b = 0
+# if(~eq($a, $b), $y) <=> if(~iszero(~xor($a, $b)), $y) <=> unless(~xor($a, $b), $y)
+macro IF_EQ($a, $b, $body):
+    unless(~xor($a, $b), $body)
+
+
+# if(~iszero(~eq($a, $b)), $y) <=> unless(~eq($a, $b), $y)
+macro IF_NOT_EQ($a, $b, $body):
+    unless(~eq($a, $b), $body)
