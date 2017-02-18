@@ -1,2 +1,2 @@
-# LogicMacros
-Logic macros for Serpent that translate to smaller LLL/opcodes.
+# MacroLib
+Macros for serpent that are nice to have around.
